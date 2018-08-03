@@ -12,20 +12,36 @@ or
 
 ## API
 
-| Method         | Description                                                    | Return       | Example                                                      |
-| -------------- | -------------------------------------------------------------- | ------------ | ------------------------------------------------------------ |
-| `new EventBus` | Creates a new `root` event bus node.                           | `EventBus`   | `const eventBus = new EventBus()`                            |
-|                |                                                                |              |                                                              |
-| `get`          | Returns a new child node `EventBus`.                           | `EventBus`   | `eventBus.get('eventName')`                                  |
-|                | - Can be curried infinitely.                                   |              | `eventBus.get('eventName')('foo')`                           |
-|                |                                                                |              | `eventBus.get('eventName')('foo')('bar')`                    |
-| `emit`         | Will `emit` an event to it's `level` and all descendant nodes. | `void`       | `eventBus.emit(data)`                                        |
-|                |                                                                |              | `eventBus.get('eventName').emit(data)`                       |
-|                |                                                                |              | `eventBus.get('eventName')('foo').emit(data)`                |
-| `listen`       | Will `listen` to events on it's `level` and all ancestors      | `unlisten()` | `eventBus.listen(listenerFn)`                                |
-|                | leading to `root`. The return value is an `unlisten` function. |              | `eventBus.get('eventName').listen(listenerFn)`               |
-|                | When invoked, it will stop this listener from receiving any    |              | `eventBus.get('eventName')('foo').listen(listenerFn)`        |
-|                | more events.                                                   |              | `eventBus.get('eventName')('foo')('bar').listen(listenerFn)` |
+| Method         | Return       | Example                                                      |
+| -------------- | ------------ | ------------------------------------------------------------ |
+| `new EventBus` | `EventBus`   | `const eventBus = new EventBus()`                            |
+| `get`          | `EventBus`   | `eventBus.get('eventName')`                                  |
+|                |              | `eventBus.get('eventName')('foo')`                           |
+|                |              | `eventBus.get('eventName')('foo')('bar')`                    |
+| `emit`         | `void`       | `eventBus.emit(data)`                                        |
+|                |              | `eventBus.get('eventName').emit(data)`                       |
+|                |              | `eventBus.get('eventName')('foo').emit(data)`                |
+| `listen`       | `unlisten()` | `eventBus.listen(listenerFn)`                                |
+|                |              | `eventBus.get('eventName').listen(listenerFn)`               |
+|                |              | `eventBus.get('eventName')('foo').listen(listenerFn)`        |
+|                |              | `eventBus.get('eventName')('foo')('bar').listen(listenerFn)` |
+
+## Methods explained
+
+### `new EventBus`
+Creates a new `root` event bus node.
+
+### `eventBus.get(string)`
+Returns a new child node `EventBus`.
+ - Can be curried infinitely.
+
+### `eventBus.emit(any)`
+ Will `emit` an event to it's `level` and all descendant nodes.
+
+### `eventBus.listen((any) => void)`
+ Will `listen` to events on it's `level` and all ancestors leading to `root`.\
+ The return value is an `unlisten` function. When invoked, it will stop this\
+ listener from receiving any more events.
 
 ## Examples
 
