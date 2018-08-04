@@ -1,9 +1,11 @@
 type EventBusEvent<T = any> = (eventBusData?: T) => void
+export type EventBusEmitter<T = any> = (eventBusData?: T) => void
+export type EventBusListener<T = any> = (fn: EventBusEvent<T>) => void
 
 export interface EventBusNode {
   (eventName: string): EventBusNode
-  emit?: <T = any>(eventBusData?: T) => void
-  listen?: <T = any>(fn: EventBusEvent<T>) => void
+  emit?: EventBusEmitter
+  listen?: EventBusListener
 }
 
 export class EventBus {
