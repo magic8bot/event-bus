@@ -1,9 +1,9 @@
-type EventBusEvent = (eventBusData?: any) => void
+type EventBusEvent<T = any> = (eventBusData?: T) => void
 
-interface EventBusGetterer {
-  (eventName: string): EventBusGetterer
-  emit?: (eventBusData?: any) => void
-  listen?: (fn: EventBusEvent) => void
+export interface EventBusNode {
+  (eventName: string): EventBusNode
+  emit?: <T = any>(eventBusData?: T) => void
+  listen?: <T = any>(fn: EventBusEvent<T>) => void
 }
 
 export class EventBus {
@@ -16,12 +16,12 @@ export class EventBus {
     return this.getter(this.emitters.get(eventName))
   }
 
-  public emit = (eventBusData?: any) => {
+  public emit = <T = any>(eventBusData?: T) => {
     this.listeners.forEach((listener) => listener(eventBusData))
     this.emitters.forEach((emitter) => emitter.emit(eventBusData))
   }
 
-  public listen = (fn: EventBusEvent) => {
+  public listen = <T = any>(fn: EventBusEvent<T>) => {
     this.listeners.add(fn)
     return () => {
       this.listeners.delete(fn)
@@ -29,7 +29,7 @@ export class EventBus {
   }
 
   private getter(bus: EventBus) {
-    const get: EventBusGetterer = function(eventName: string) {
+    const get: EventBusNode = function(eventName: string) {
       return bus.get(eventName)
     }
 
