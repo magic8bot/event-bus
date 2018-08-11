@@ -122,4 +122,40 @@ describe('EventBus', () => {
 
     expect(listener).not.toHaveBeenCalledWith('data')
   })
+
+  test('lists all direct descendant keys', () => {
+    const eventBus = new EventBus()
+
+    eventBus.get('1')
+    eventBus.get('2')
+    eventBus.get('3')
+    eventBus.get('4')
+
+    const result = eventBus.listKeys()
+
+    expect(result).toEqual(['1', '2', '3', '4'])
+  })
+
+  test('lists only direct descendant keys', () => {
+    const eventBus = new EventBus()
+
+    eventBus.get('1')('1.1')('1.2')
+    eventBus.get('2')('2.1')('2.2')
+
+    const result = eventBus.listKeys()
+
+    expect(result).toEqual(['1', '2'])
+  })
+
+  test('lists nested descendant keys', () => {
+    const eventBus = new EventBus()
+
+    eventBus.get('1')('1.1.1')('1.2')
+    eventBus.get('1')('1.1.2')('1.2')
+    eventBus.get('2')('2.1')('2.2')
+
+    const result = eventBus.get('1').listKeys()
+
+    expect(result).toEqual(['1.1.1', '1.1.2'])
+  })
 })

@@ -6,6 +6,7 @@ export interface EventBusNode {
   (eventName: string): EventBusNode
   emit?: EventBusEmitter
   listen?: EventBusListener
+  listKeys?: () => string[]
 }
 
 export class EventBus {
@@ -30,6 +31,10 @@ export class EventBus {
     }
   }
 
+  public listKeys = () => {
+    return Array.from(this.emitters.keys())
+  }
+
   private getter(bus: EventBus) {
     const get: EventBusNode = function(eventName: string) {
       return bus.get(eventName)
@@ -37,6 +42,7 @@ export class EventBus {
 
     get.listen = bus.listen
     get.emit = bus.emit
+    get.listKeys = bus.listKeys
 
     return get
   }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1534023931569" clover="3.2.0">
+  <project timestamp="1534023931569" name="All files">
+    <metrics statements="20" coveredstatements="20" conditionals="2" coveredconditionals="2" methods="10" coveredmethods="10" elements="32" coveredelements="32" complexity="0" loc="20" ncloc="20" packages="1" files="1" classes="1">
+      <file name="event-bus.ts" path="/Users/vitaliyisikov/projects/event-bus/src/event-bus.ts">
+        <metrics statements="20" coveredstatements="20" conditionals="2" coveredconditionals="2" methods="10" coveredmethods="10"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="55" type="stmt"/>
+        <line num="14" count="55" type="stmt"/>
+        <line num="17" count="52" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="52" type="stmt"/>
+        <line num="22" count="55" type="stmt"/>
+        <line num="23" count="28" type="stmt"/>
+        <line num="24" count="28" type="stmt"/>
+        <line num="27" count="55" type="stmt"/>
+        <line num="28" count="12" type="stmt"/>
+        <line num="29" count="12" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="34" count="55" type="stmt"/>
+        <line num="35" count="3" type="stmt"/>
+        <line num="39" count="52" type="stmt"/>
+        <line num="40" count="28" type="stmt"/>
+        <line num="43" count="52" type="stmt"/>
+        <line num="44" count="52" type="stmt"/>
+        <line num="45" count="52" type="stmt"/>
+        <line num="47" count="52" type="stmt"/>
+      </file>
+    </metrics>
+  </project>
+</coverage>

@@ -1,6 +1,6 @@
 {
   "name": "@magic8bot/event-bus",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "main": "./dist/event-bus.js",
   "license": "MIT",
   "scripts": {
