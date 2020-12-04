@@ -1,6 +1,6 @@
 type EventBusEvent<T = any> = (eventBusData?: T) => void
 export type EventBusEmitter<T = any> = (eventBusData?: T) => void
-export type EventBusListener<T = any> = (fn: EventBusEvent<T>) => void
+export type EventBusListener<T = any> = (fn: EventBusEvent<T>) => () => void
 
 export interface EventBusNode {
   (eventName: string): EventBusNode
@@ -36,7 +36,7 @@ export class EventBus {
   }
 
   private getter(bus: EventBus) {
-    const get: EventBusNode = function(eventName: string) {
+    const get: EventBusNode = function (eventName: string) {
       return bus.get(eventName)
     }
 
